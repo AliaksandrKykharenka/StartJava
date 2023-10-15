@@ -1,6 +1,5 @@
 package com.startjava.lesson_2_3_4.array;
 
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -45,7 +44,6 @@ public class ArraysTheme {
 
     public void deleteElements() {
         System.out.println("\n\n3. Удаление элементов массива");
-        DecimalFormat df = new DecimalFormat("0.000");
         Random random = new Random();
         Double[] randomNums = new Double[15];
         int len = randomNums.length;
@@ -55,7 +53,7 @@ public class ArraysTheme {
                 System.out.println();
             }
         }
-            printNums(randomNums);
+        printNums(randomNums);
 
         System.out.println();
         int zeroQuantity = 0;
@@ -69,7 +67,7 @@ public class ArraysTheme {
                 System.out.println();
             }
         }
-            printNums(randomNums);
+        printNums(randomNums);
         System.out.println("\nZero cells quantity : " + zeroQuantity);
     }
 
@@ -91,7 +89,7 @@ public class ArraysTheme {
         }
         StringBuilder sb = new StringBuilder();
         for (int i = len - 1; i > -1; i--) {
-            System.out.println(sb + " " + alphabet[i]);
+            System.out.println(sb + "" + alphabet[i]);
             sb.append(alphabet[i]);
         }
     }
@@ -100,36 +98,28 @@ public class ArraysTheme {
         System.out.println("\n5. Заполнение массива уникальными числами");
         int[] uniqueNums = new int[30];
         int len = uniqueNums.length;
-        for (int i = 0; i < len; i++) {
-            uniqueNums[i] = ((int) (Math.random() * (100 - 60))) + 60;
-        }
 
-        for (int i = 0; i < len - 1; i++) {
-            for (int j = i + 1; j < len; j++) {
-                while (uniqueNums[i] == uniqueNums[j]) {
-                    uniqueNums[j] = ((int) (Math.random() * (100 - 60))) + 60;
+        uniqueNums[0] = ((int) (Math.random() * (100 - 60))) + 60;
+        for (int i = 1; i < len; i++) {
+            int randomNum = ((int) (Math.random() * (100 - 60))) + 60;
+            for (int j = 0; j < i; j++) {
+                if (randomNum == uniqueNums[j]) {
+                    randomNum = -1;
+                    i--;
+                    break;
                 }
             }
-        }
-
-        for (int i = 0; i < len - 1; i++) {
-            for (int j = i + 1; j < len; j++) {
-                if (uniqueNums[i] > uniqueNums[j]) {
-                    int temporary = uniqueNums[i];
-                    uniqueNums[i] = uniqueNums[j];
-                    uniqueNums[j] = temporary;
-                }
+            if (randomNum != -1) {
+                uniqueNums[i] = randomNum;
             }
         }
+        Arrays.sort(uniqueNums);
+        print(uniqueNums);
+    }
 
-        int counter = 1;
-        for (int uniqueNum : uniqueNums) {
-            System.out.print(uniqueNum + " ");
-            if (counter == 10) {
-                counter = 0;
-                System.out.println();
-            }
-            counter++;
+    private static void print(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(i % 10 == 0 ? "\n" : array[i] + " ");
         }
     }
 }
