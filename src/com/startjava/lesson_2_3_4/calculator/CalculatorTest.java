@@ -8,22 +8,16 @@ public class CalculatorTest {
         Scanner scanner = new Scanner(System.in);
         String yesNo = "yes";
         while (yesNo.equals("yes")) {
-            System.out.println("Type in the first number");
-            calculator.setA(scanner.nextInt());
-            scanner.nextLine();
-
-            System.out.println("Type in the math sigh");
-            calculator.setSign(scanner.nextLine().charAt(0));
-
-            System.out.println("Type in the second number");
-            calculator.setB(scanner.nextInt());
-            scanner.nextLine();
-
+            System.out.println("Enter separated by a space: first number, mathematical symbol, second number");
+            String[] mathExpression = scanner.nextLine().split(" ");
+            calculator.setA(Double.parseDouble(mathExpression[0]));
+            calculator.setSign(mathExpression[1].charAt(0));
+            calculator.setB(Double.parseDouble(mathExpression[2]));
             calculator.calculate();
-
             System.out.println("Would you like to continue type in yes or no ?");
             yesNo = scanner.nextLine();
-            while (!yesNo.equals("yes") && !yesNo.equals("no")) {
+
+            if (!yesNo.equals("no")) {
                 System.out.println("Do write down yes or no !!!");
                 yesNo = scanner.nextLine();
             }

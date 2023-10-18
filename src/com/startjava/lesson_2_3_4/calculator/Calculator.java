@@ -1,12 +1,12 @@
 package com.startjava.lesson_2_3_4.calculator;
 
 public class Calculator {
-    private int a;
+    private double a;
     private char sign;
-    private int b;
-    private int result;
+    private double b;
+    private double result;
 
-    public void setA(int a) {
+    public void setA(double a) {
         this.a = a;
     }
 
@@ -14,13 +14,16 @@ public class Calculator {
         this.sign = sign;
     }
 
-    public void setB(int b) {
+    public void setB(double b) {
         this.b = b;
     }
 
     private void printResult() {
-        System.out.println(a + " " + sign + " " +
-                b + " = " + result);
+        if (result % 1 == 0) {
+            System.out.printf((int) a + " " + sign + " " + (int) b + " = %.0f \n", result);
+        } else {
+            System.out.printf((int) a + " " + sign + " " + (int) b + " = %.3f \n", result);
+        }
     }
 
     public void calculate() {
@@ -38,16 +41,13 @@ public class Calculator {
                 result = a / b;
                 break;
             case '^':
-                result = a;
-                for (int i = 1; i < b; i++) {
-                    result *= a;
-                }
+                result = Math.pow(a, b);
                 break;
             case '%':
                 result = a % b;
                 break;
             default:
-                System.out.println("This math operation is not supported");
+                System.out.println("Error: the sign " + sign + " is not supported");
                 return;
         }
         printResult();
