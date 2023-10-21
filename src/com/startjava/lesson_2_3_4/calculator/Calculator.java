@@ -1,34 +1,16 @@
 package com.startjava.lesson_2_3_4.calculator;
 
-import java.util.Scanner;
-
 public class Calculator {
     private double a;
     private char sign;
     private double b;
     private double result;
 
-    public void startCalculation() {
-        Scanner scanner = new Scanner(System.in);
-        String yesNo = "yes";
-        while (yesNo.equals("yes")) {
-            System.out.print("Enter separated by a space: first number, mathematical symbol, second number: ");
-            String[] mathExpression = scanner.nextLine().split(" ");
-            a = Double.parseDouble(mathExpression[0]);
-            sign = mathExpression[1].charAt(0);
-            b = Double.parseDouble(mathExpression[2]);
-            calculate();
-            System.out.print("Would you like to continue? Type in [yes/no]: ");
-            yesNo = scanner.nextLine();
-
-            while (!yesNo.equals("no") && !yesNo.equals("yes") ) {
-                System.out.println("Do write down yes or no !!!");
-                yesNo = scanner.nextLine();
-            }
-        }
-    }
-
-    private void calculate() {
+    public void calculate(String inputMathExpression) {
+        String[] separateMathExpression = inputMathExpression.split(" ");
+        a = Double.parseDouble(separateMathExpression[0]);
+        sign = separateMathExpression[1].charAt(0);
+        b = Double.parseDouble(separateMathExpression[2]);
         switch (sign) {
             case '+' -> result = a + b;
             case '-' -> result = a - b;
