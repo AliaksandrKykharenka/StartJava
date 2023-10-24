@@ -4,23 +4,7 @@ public class Calculator {
     private double a;
     private char sign;
     private double b;
-    private double result;
-
-    public double getA() {
-        return a;
-    }
-
-    public char getSign() {
-        return sign;
-    }
-
-    public double getB() {
-        return b;
-    }
-
-    public double getResult() {
-        return result;
-    }
+    private double result = Double.MIN_VALUE;
 
     public double calculate(String mathExpression) {
         String[] elements = mathExpression.split(" ");
@@ -34,8 +18,16 @@ public class Calculator {
             case '/' -> result = a / b;
             case '^' -> result = Math.pow(a, b);
             case '%' -> result = a % b;
-            default -> System.out.println("dsd sd sd s sd");
+            default -> System.out.println("Error the sign: " + "'" + sign + "'" + " is not supported");
         }
         return result;
+    }
+
+    public void print() {
+        if ((result % 1 == 0) && (result != Double.MIN_VALUE)) {
+            System.out.printf((int) a + " " + sign + " " + (int) b + " = %.0f \n", result);
+        } else if ((result % 1 != 0) && (result != Double.MIN_VALUE)) {
+            System.out.printf((int) a + " " + sign + " " + (int) b + " = %.3f \n", result);
+        }
     }
 }
