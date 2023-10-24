@@ -14,7 +14,6 @@ public class CalculatorTest {
                 String mathExpression = scanner.nextLine();
                 calculator.calculate(mathExpression);
                 calculator.print();
-
             }
             System.out.print("Would you like to continue? Type in [yes/no]: ");
             answer = scanner.nextLine();
