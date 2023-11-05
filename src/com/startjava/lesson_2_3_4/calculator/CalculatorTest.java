@@ -12,8 +12,14 @@ public class CalculatorTest {
             if ("yes".equals(answer)) {
                 System.out.print("Enter separated by a space: first number, mathematical symbol, second number: ");
                 String mathExpression = scanner.nextLine();
-                double result = Calculator.calculate(mathExpression);
-                print(result, mathExpression);
+
+                double result;
+                try {
+                    result = Calculator.calculate(mathExpression);
+                    print(result, mathExpression);
+                } catch (RuntimeException e) {
+                    System.out.println(e.getMessage());
+                }
             }
 
             System.out.print("Would you like to continue? Type in [yes/no]: ");
@@ -23,8 +29,8 @@ public class CalculatorTest {
 
     private static void print(double result, String mathExpression) {
         if (result != Double.MIN_VALUE) {
-            System.out.println((result % 1 == 0) ? mathExpression + " = " + (int) result :
-                    mathExpression + " = " + String.format("%.3f", result));
+            System.out.println(mathExpression + ((result % 1 == 0) ? " = " + (int) result :
+                    " = " + String.format("%.3f", result)));
         }
     }
 }
