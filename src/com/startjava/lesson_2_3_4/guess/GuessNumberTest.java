@@ -11,8 +11,8 @@ public class GuessNumberTest {
             if (answer.equals("yes")) {
                 guessNum.start();
             }
-                System.out.println("\nWould you like to continue type in yes or no ?");
-                answer = scanner.nextLine();
+            System.out.println("\nWould you like to continue type in yes or no ?");
+            answer = scanner.nextLine();
         } while (!answer.equals("no"));
     }
 }

@@ -1,50 +1,42 @@
 package com.startjava.lesson_2_3_4.guess;
 
-import java.util.Arrays;
-
 public class Player {
     private String name;
-    private int[] num = new int[10];
-    private int counter;
-
-    public String getName() {
-        return name;
-    }
-
-    public int[] getNum() {
-        return num;
-    }
-
-    public void setNum(int num) {
-        if (this.counter < 10) {
-            this.num[this.counter] = num;
-            this.counter++;
-        }
-    }
-
-    public int getCounter() {
-        return counter;
-    }
-
-    public void setCounter(int counter) {
-        this.counter = counter;
-    }
-
-    public int getInteger() {
-        if (counter == 0) {
-            return num[counter];
-        } else {
-            return num[counter - 1];
-        }
-    }
+    private int[] nums = new int[10];
+    private int attempt;
 
     public Player(String name) {
         this.name = name;
     }
 
-    public void printAttempts() {
-        for (int num : Arrays.copyOf(num, counter)) {
-            System.out.print(num + " ");
+    public String getName() {
+        return name;
+    }
+
+    public int[] getNums() {
+        return nums;
+    }
+
+    public void setNums(int nums) {
+        if (attempt < 10) {
+            this.nums[attempt] = nums;
+            attempt++;
+        }
+    }
+
+    public int getAttempt() {
+        return attempt;
+    }
+
+    public void setAttempt(int attempt) {
+        this.attempt = attempt;
+    }
+
+    public int getNum() {
+        if (attempt == 0) {
+            return nums[attempt];
+        } else {
+            return nums[attempt - 1];
         }
     }
 }
