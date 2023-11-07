@@ -4,18 +4,15 @@ public class Calculator {
 
     public static double calculate(String mathExpression) {
         String[] elements = mathExpression.split(" ");
-        char sign;
-        double a,b;
 
         if (elements.length != 3) {
             throw new RuntimeException("The length of inputting math expression has not necessary size");
         }
 
-        a = Double.parseDouble(elements[0]);
-        sign = elements[1].charAt(0);
-        b = Double.parseDouble(elements[2]);
-
-                checkNums(a, b);
+        double a = Double.parseDouble(elements[0]);
+        char sign = elements[1].charAt(0);
+        double b = Double.parseDouble(elements[2]);
+        checkNums(a, b);
 
         return switch (sign) {
             case '+' -> a + b;
@@ -24,8 +21,7 @@ public class Calculator {
             case '/' -> a / b;
             case '^' -> Math.pow(a, b);
             case '%' -> a % b;
-            default ->
-                throw new RuntimeException("Error the sigh " + "'" + sign + "'" + " not supported");
+            default -> throw new RuntimeException("Error the sigh " + "'" + sign + "'" + " not supported");
         };
     }
 
